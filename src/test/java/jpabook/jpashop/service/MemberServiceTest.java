@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @Transactional
 class MemberServiceTest {
@@ -28,7 +26,7 @@ class MemberServiceTest {
         member.setName("kim");
 
         //when
-        Long savedId = memberService.save(member);
+        Long savedId = memberService.join(member);
 
         //then
         Member findMember = memberRepository.findOne(savedId);
@@ -46,11 +44,11 @@ class MemberServiceTest {
         member2.setName("kim");
 
         //when
-        memberService.save(member1);
+        memberService.join(member1);
 
         //then
         Assertions.assertThatThrownBy(() -> {
-            memberService.save(member2);
+            memberService.join(member2);
         }).isInstanceOf(IllegalStateException.class);
     }
 }
