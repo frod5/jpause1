@@ -65,7 +65,7 @@ public class ItemController {
 
     @PostMapping("items/{itemId}/edit")
     public String updateItem(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) {
-        Book book = new Book();
+        Book book = new Book(); //임의로 만들어낸 엔티티도 기존 식별자를 가지고 있으면 준영속 엔티티로 볼 수 있다.
         book.setId(form.getId());
         book.setName(form.getName());
         book.setPrice(form.getPrice());
